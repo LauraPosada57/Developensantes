@@ -49,17 +49,20 @@ function UsuariosPage() {
     }
 
     const editar = () => {
-        let userNueva = users;
-        userNueva.map(usuario => {
-            if (usuario.id_user === usuarioSeleccionado.id_user) {
-                usuario.name = usuarioSeleccionado.name;
-                usuario.email = usuarioSeleccionado.email;
-                usuario.role = usuarioSeleccionado.role;
-                usuario.status = usuarioSeleccionado.status;
-            }
-        });
-        setUsers(userNueva);
-        setModalEditar(false);
+        console.log("sending to update", usuarioSeleccionado);
+        fetch("http://localhost:5000/api/users/"+usuarioSeleccionado.id_user, {
+            method: 'PUT',
+            body: JSON.stringify(usuarioSeleccionado),
+            headers:{
+                'Content-Type': 'application/json'
+            }          
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => {
+            get_users();        
+            setModalEditar(false); 
+            console.log('Success:', response);                    
+        }); 
     }
 
     const eliminar =()=>{
