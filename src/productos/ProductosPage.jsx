@@ -8,7 +8,7 @@ import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 
 
 function ProductosPage() {
-    
+
     let products_db = [];
 
     const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ function ProductosPage() {
     const [busqueda, setBusqueda] = useState("");
 
     const get_products = () => {
-        // Se obtiene los datos de la API 
+        // Se obtiene los datos de la API
         fetch("http://localhost:5000/api/products")
         .then(res => res.json())
         .then(data => {
@@ -38,7 +38,7 @@ function ProductosPage() {
         id_product: '',
         description: '',
         unit_price: '',
-        status: ''
+        status: 1
     });
 
     const seleccionarProducto = (item, caso) => {
@@ -56,25 +56,25 @@ function ProductosPage() {
     }
 
     const editar = () => {
-        console.log("sending to update", ProductoSeleccionado);        
+        console.log("sending to update", ProductoSeleccionado);
         fetch("http://localhost:5000/api/products/"+ProductoSeleccionado.id_product, {
             method: 'PUT',
             body: JSON.stringify(ProductoSeleccionado),
             headers:{
                 'Content-Type': 'application/json'
-            }          
+            }
         }).then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(response => {
-            get_products();        
-            setModalEditar(false); 
-            console.log('Success:', response);                    
-        });         
+            get_products();
+            setModalEditar(false);
+            console.log('Success:', response);
+        });
 
     }
 
     const eliminar = () => {
-        // Se obtiene los datos de la API 
+        // Se obtiene los datos de la API
         fetch("http://localhost:5000/api/products/"+ProductoSeleccionado.id_product, {
             method: 'DELETE'
         })
@@ -82,13 +82,13 @@ function ProductosPage() {
         .then(data => {
             if (data.code == "ER_ROW_IS_REFERENCED_2") {
                 alert("No es posible eliminar un producto que tiene ventas asociadas");
-                get_products();                
+                get_products();
             } else {
                 alert("Producto eliminado con éxito!");
                 get_products();
             }
-            
-        });        
+
+        });
         setModalEliminar(false);
 
     }

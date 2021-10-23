@@ -14,7 +14,7 @@ function VentasPage() {
 
     let sales_db =[]
 
-    
+
     const [products, setProducts] = useState([]);
     const [users, setUsers] = useState([]);
     const [sales, setSales] = useState([]);
@@ -23,7 +23,7 @@ function VentasPage() {
     const [busqueda, setBusqueda] = useState("");
 
     const get_sales = () => {
-           // Se obtiene los datos de la API 
+           // Se obtiene los datos de la API
         fetch("http://localhost:5000/api/sales")
         .then(res => res.json())
         .then(data => {
@@ -38,30 +38,32 @@ function VentasPage() {
         get_sales();
     }, [])
 
-    
+
     const getProducts = () => {
-        // Se obtiene los datos de la API 
+        // Se obtiene los datos de la API
         fetch("http://localhost:5000/api/products")
         .then(res => res.json())
         .then(data => {
             let products_db = data
             setProducts(products_db);
         });
-    }  
+    }
 
     const getUsers = () => {
-        // Se obtiene los datos de la API 
+        // Se obtiene los datos de la API
         fetch("http://localhost:5000/api/users")
         .then(res => res.json())
         .then(data => {
-            let users = data.filter(u => u.role == "Vendedor")
+            let users = data.filter(u => u.role === "admin")
+            console.log(users)
             setUsers(users);
+            // console.log(data)
         });
-    }  
+    }
 
 
     const handleChange = e => {
-        setBusqueda(e.target.value);        
+        setBusqueda(e.target.value);
     }
 
     const [SaleSeleccionado, setSaleSeleccionado] = useState({
@@ -100,18 +102,18 @@ function VentasPage() {
             body: JSON.stringify(SaleSeleccionado),
             headers:{
                 'Content-Type': 'application/json'
-            }          
+            }
         }).then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(response => {
-            get_sales();        
-            setModalEditar(false); 
-            console.log('Success:', response);                    
-        });                       
+            get_sales();
+            setModalEditar(false);
+            console.log('Success:', response);
+        });
     }
-    
+
     const eliminar =()=>{
-          // Se obtiene los datos de la API 
+          // Se obtiene los datos de la API
           fetch("http://localhost:5000/api/sales/"+SaleSeleccionado.id_sale, {
             method: 'DELETE'
         })
@@ -119,13 +121,13 @@ function VentasPage() {
         .then(data => {
             if (data.code == "ER_ROW_IS_REFERENCED_2") {
                 alert("No es posible eliminar una venta que tiene productos asociadas");
-                get_sales();                
+                get_sales();
             } else {
                 alert("Venta eliminada con éxito!");
                 get_sales();
             }
-            
-        });              
+
+        });
         setModalEliminar(false);
 
       }
@@ -141,7 +143,7 @@ function VentasPage() {
                     className="form-control inputBuscar mb-3"
                     value={busqueda}
                     placeholder="Búsqueda por Identificación de venta, cliente o nombre del cliente"
-                    onChange={handleChange} />            
+                    onChange={handleChange} />
             </div>
 
             <table className="table">
@@ -186,7 +188,7 @@ function VentasPage() {
                             <td><button className="btn btn-primary" onClick={() => seleccionarSale(item, 'Editar')}>Editar</button> {"   "}
                                         <button className="btn btn-danger" onClick={() => seleccionarSale(item, 'Eliminar')}>Eliminar</button></td>
                             </tr>
-                            
+
                         );
                     })
                 }
@@ -224,10 +226,10 @@ function VentasPage() {
                         <select className="form-select" aria-label="Default select example" name="id_product" id="selectProduct" onChange={bChange} defaultValue={SaleSeleccionado.id_product}>
                             <option value="0" >Selecciona producto..</option>
                             {
-                                products.map( product => 
+                                products.map( product =>
                                 <option value={product.id_product} key={product.id_product}>{product.description}</option> )
                             }
-                            </select>                        
+                            </select>
                         <br />
                         <br />
 
@@ -290,10 +292,10 @@ function VentasPage() {
                         <select className="form-select" aria-label="Default select example" name="id_seller" onChange={bChange} defaultValue={SaleSeleccionado.id_seller}>
                             <option value="0" >Selecciona Vendedor..</option>
                             {
-                                users.map( user => 
+                                users.map( user =>
                                 <option value={user.id_user} key={user.id_user}>{user.name}</option> )
                             }
-                            </select>                                   
+                            </select>
                         <br />
 
                     </div>

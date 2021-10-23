@@ -1,35 +1,44 @@
-import React, { Fragment, useState } from 'react';
+import React, {Fragment, useContext, useState} from 'react';
 import './LoginStyles.css';
+import {StoreContext} from "../store/StoreProvider";
 
 
-
-function LoginPage() {
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const login = () => {
-        console.log('Login')
-        console.log(`${email} ${password} `)
-        // Verifica sin el correo y la contraseña son correctas
-
-    }
-
+function Imagenes(props){
     return (
         <Fragment>
-            <div className="container">
-                <div className="form-floating mb-3">
-                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" onChange={(data)=> setEmail(data.target.value)} />
-                    <label htmlFor="floatingInput">Email address</label>
-                </div>
-                <div className="form-floating">
-                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" onChange={(data)=> setPassword(data.target.value)}/>
-                    <label htmlFor="floatingPassword">Password</label>
-                </div>
-                <button type="button" className="btn btn-primary mt-2" onClick={login}>Iniciar sesión</button>
-            </div>
+            <h1>Crear acá imagenes</h1>
         </Fragment>
     )
 }
+
+function LoginPage() {
+    const [store, dispatch] = useContext(StoreContext);
+    const {isAuthenticated} = store;
+
+    if (isAuthenticated) {
+        return (
+            <Fragment>
+                <div className="container">
+                    <div className="card">
+                        Hola, bienvenido a la aplicación AromaCafé,
+                    </div>
+                    <Imagenes/>
+                </div>
+            </Fragment>
+        )
+    }else{
+        return (
+            <>
+                <div className="container">
+                    <div className="card">
+                        Para poder user la aplicación por favor inicia sesión con Google
+                    </div>
+                    <Imagenes/>
+                </div>
+            </>
+        )
+    }
+}
+
 
 export default LoginPage;

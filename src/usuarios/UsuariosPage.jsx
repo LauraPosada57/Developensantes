@@ -11,13 +11,13 @@ function UsuariosPage() {
     const [users, setUsers] = useState([]);
     const [modalEditar, setModalEditar] = useState(false);
     const [modalEliminar, setModalEliminar] = useState(false);
-    
 
-    const get_users = () => {        
-        // Se obtiene los datos de la API 
+
+    const get_users = () => {
+        // Se obtiene los datos de la API
         fetch("http://localhost:5000/api/users")
         .then(res => res.json())
-        .then(data => {                
+        .then(data => {
             setUsers(data);
         });
     }
@@ -63,21 +63,29 @@ function UsuariosPage() {
     }
 
     const eliminar =()=>{
-          // Se obtiene los datos de la API 
+          // Se obtiene los datos de la API
+        const tokenId = localStorage.getItem('tokenId')
         fetch("http://localhost:5000/api/users/"+usuarioSeleccionado.id_user, {
-            method: 'DELETE'
+            method: 'DELETE',
+            body: JSON.stringify({tokenId: tokenId}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             if (data.code == "ER_ROW_IS_REFERENCED_2") {
                 alert("No es posible eliminar un usuario que tiene una venta asociada");
-                get_users();                
+                get_users();
             } else {
                 alert("Usuario eliminado con éxito!");
                 get_users();
             }
-            
-        });            
+
+        }).catch(err => {
+            alert('No tienes permisos para esta operación')
+        });
         setModalEliminar(false);
 
       }
