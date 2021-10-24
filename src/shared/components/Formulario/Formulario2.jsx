@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Redirect } from "react-router";
 import formularioStyle from "./formularioStyle.css"
+import apiBaseUrl from '../shared/utils/Api';
 
 const Formulario2= () => {
     const [datos, setDatos] = useState({
@@ -21,7 +22,7 @@ const Formulario2= () => {
     const enviarDatos = (event) => {
         event.preventDefault();
         console.log(datos);
-        fetch("http://localhost:5000/api/products", {
+        fetch(`${apiBaseUrl}/api/products`, {
             method: 'POST',
             body: JSON.stringify(datos),
             headers:{

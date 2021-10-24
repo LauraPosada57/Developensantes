@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect} from "react";
 import formularioStyle from "./formularioStyle.css"
+import apiBaseUrl from '../shared/utils/Api';
 
 const Formulario = () => {
 
@@ -20,7 +21,7 @@ const Formulario = () => {
         event.preventDefault();
         console.log(datos);
         datos["unit_price"] = document.getElementById("unitPrice").value;
-        fetch("http://localhost:5000/api/sales", {
+        fetch(`${apiBaseUrl}/api/sales`, {
             method: 'POST',
             body: JSON.stringify(datos),
             headers:{
@@ -51,7 +52,7 @@ const Formulario = () => {
 
     const getProducts = () => {
         // Se obtiene los datos de la API 
-        fetch("http://localhost:5000/api/products")
+        fetch(`${apiBaseUrl}/api/products`)
         .then(res => res.json())
         .then(data => {
             let products_db = data
@@ -61,7 +62,7 @@ const Formulario = () => {
 
     const getUsers = () => {
         // Se obtiene los datos de la API 
-        fetch("http://localhost:5000/api/users")
+        fetch(`${apiBaseUrl}/api/users`)
         .then(res => res.json())
         .then(data => {
             let users = data.filter(u => u.role == "admin")

@@ -5,6 +5,7 @@ import './VentasStyles.css';
 import Formulario from '../shared/components/Formulario/Formulario';
 import { Link } from "react-router-dom"
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+import apiBaseUrl from '../shared/utils/Api';
 
 
 
@@ -24,7 +25,7 @@ function VentasPage() {
 
     const get_sales = () => {
            // Se obtiene los datos de la API
-        fetch("http://localhost:5000/api/sales")
+        fetch(`${apiBaseUrl}/api/sales`)
         .then(res => res.json())
         .then(data => {
             sales_db = data
@@ -41,7 +42,7 @@ function VentasPage() {
 
     const getProducts = () => {
         // Se obtiene los datos de la API
-        fetch("http://localhost:5000/api/products")
+        fetch(`${apiBaseUrl}/api/products`)
         .then(res => res.json())
         .then(data => {
             let products_db = data
@@ -51,7 +52,7 @@ function VentasPage() {
 
     const getUsers = () => {
         // Se obtiene los datos de la API
-        fetch("http://localhost:5000/api/users")
+        fetch(`${apiBaseUrl}/api/users`)
         .then(res => res.json())
         .then(data => {
             let users = data.filter(u => u.role === "admin")
@@ -97,7 +98,7 @@ function VentasPage() {
     const editar = () => {
         console.log("sending to update", SaleSeleccionado);
         SaleSeleccionado.date = SaleSeleccionado.date.split("T")[0];
-        fetch("http://localhost:5000/api/sales/"+SaleSeleccionado.id_sale, {
+        fetch(`${apiBaseUrl}/api/sales/`+SaleSeleccionado.id_sale, {
             method: 'PUT',
             body: JSON.stringify(SaleSeleccionado),
             headers:{
@@ -114,7 +115,7 @@ function VentasPage() {
 
     const eliminar =()=>{
           // Se obtiene los datos de la API
-          fetch("http://localhost:5000/api/sales/"+SaleSeleccionado.id_sale, {
+          fetch(`${apiBaseUrl}/api/sales/`+SaleSeleccionado.id_sale, {
             method: 'DELETE'
         })
         .then(res => res.json())

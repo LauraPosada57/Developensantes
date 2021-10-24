@@ -8,12 +8,12 @@
     "client_secret": "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",
     "redirect_uris": [
       "http://localhost:3000/",
-      "http://localhost:5000/api/users/google",
-      "http://localhost:5000/api/users/google/login"
+      "https://backdevelopensantes.herokuapp.com/api/users/google",
+      "https://backdevelopensantes.herokuapp.com/api/users/google/login"
     ],
     "javascript_origins": [
       "http://localhost:3000",
-      "http://localhost:5000"
+      "https://backdevelopensantes.herokuapp.com"
     ]
   }
 }

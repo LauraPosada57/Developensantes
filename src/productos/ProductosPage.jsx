@@ -4,6 +4,7 @@ import './ProductosStyles.css';
 //import NavbarComponent from '../shared/components/navbar/NavbarComponent';
 import { Link } from "react-router-dom"
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+import apiBaseUrl from '../shared/utils/Api';
 
 
 
@@ -18,7 +19,7 @@ function ProductosPage() {
 
     const get_products = () => {
         // Se obtiene los datos de la API
-        fetch("http://localhost:5000/api/products")
+        fetch(`${apiBaseUrl}/api/products`)
         .then(res => res.json())
         .then(data => {
             products_db = data
@@ -57,7 +58,7 @@ function ProductosPage() {
 
     const editar = () => {
         console.log("sending to update", ProductoSeleccionado);
-        fetch("http://localhost:5000/api/products/"+ProductoSeleccionado.id_product, {
+        fetch(`${apiBaseUrl}/api/products/`+ProductoSeleccionado.id_product, {
             method: 'PUT',
             body: JSON.stringify(ProductoSeleccionado),
             headers:{
@@ -75,7 +76,7 @@ function ProductosPage() {
 
     const eliminar = () => {
         // Se obtiene los datos de la API
-        fetch("http://localhost:5000/api/products/"+ProductoSeleccionado.id_product, {
+        fetch(`${apiBaseUrl}/api/products/`+ProductoSeleccionado.id_product, {
             method: 'DELETE'
         })
         .then(res => res.json())

@@ -5,6 +5,7 @@ import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {web} from '../../../google.json'
 import {StoreContext} from "../../../store/StoreProvider";
 import {types} from "../../../store/storeReducer";
+import apiBaseUrl from '../shared/utils/Api';
 
 
 const clientId = web.client_id
@@ -19,7 +20,7 @@ function Login(props) {
 
     const onSuccess = (result) => {
         console.log(result)
-        fetch('http://localhost:5000/api/users/login', {
+        fetch(`${apiBaseUrl}/api/users/login`, {
             method: 'POST',
             body: JSON.stringify({tokenId: result.tokenId}),
             headers: {

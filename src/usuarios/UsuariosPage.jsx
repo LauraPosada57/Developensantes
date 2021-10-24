@@ -3,6 +3,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 //import NavbarComponent from '../shared/components/navbar/NavbarComponent';
+import apiBaseUrl from '../shared/utils/Api';
 
 function UsuariosPage() {
 
@@ -15,7 +16,7 @@ function UsuariosPage() {
 
     const get_users = () => {
         // Se obtiene los datos de la API
-        fetch("http://localhost:5000/api/users")
+        fetch(`${apiBaseUrl}/api/users`)
         .then(res => res.json())
         .then(data => {
             setUsers(data);
@@ -65,7 +66,7 @@ function UsuariosPage() {
     const eliminar =()=>{
           // Se obtiene los datos de la API
         const tokenId = localStorage.getItem('tokenId')
-        fetch("http://localhost:5000/api/users/"+usuarioSeleccionado.id_user, {
+        fetch(`${apiBaseUrl}/api/users/`+usuarioSeleccionado.id_user, {
             method: 'DELETE',
             body: JSON.stringify({tokenId: tokenId}),
             headers: {
