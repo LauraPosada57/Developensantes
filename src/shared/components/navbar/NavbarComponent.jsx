@@ -5,7 +5,7 @@ import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {web} from '../../../google.json'
 import {StoreContext} from "../../../store/StoreProvider";
 import {types} from "../../../store/storeReducer";
-import apiBaseUrl from '../shared/utils/Api';
+import apiBaseUrl from '../../utils/Api';
 
 
 const clientId = web.client_id

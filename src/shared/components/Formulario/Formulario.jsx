@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect} from "react";
 import formularioStyle from "./formularioStyle.css"
-import apiBaseUrl from '../shared/utils/Api';
+import apiBaseUrl from '../../utils/Api';
 
 const Formulario = () => {
 

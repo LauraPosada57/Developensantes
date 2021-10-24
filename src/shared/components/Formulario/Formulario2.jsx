@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Redirect } from "react-router";
 import formularioStyle from "./formularioStyle.css"
-import apiBaseUrl from '../shared/utils/Api';
+import apiBaseUrl from '../../utils/Api';
 
 const Formulario2= () => {
     const [datos, setDatos] = useState({
