@@ -1,12 +1,13 @@
 import React, {Fragment, useContext, useState} from 'react';
 import './LoginStyles.css';
 import {StoreContext} from "../store/StoreProvider";
+import Carrusel from '../shared/components/carrusel/Carrusel'
 
 
 function Imagenes(props){
     return (
         <Fragment>
-            <h1>Crear acá imagenes</h1>
+            <Carrusel></Carrusel>
         </Fragment>
     )
 }

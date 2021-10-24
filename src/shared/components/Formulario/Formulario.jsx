@@ -64,7 +64,7 @@ const Formulario = () => {
         fetch("http://localhost:5000/api/users")
         .then(res => res.json())
         .then(data => {
-            let users = data.filter(u => u.role == "Vendedor")
+            let users = data.filter(u => u.role == "admin")
             setUsers(users);
         });
     }  
