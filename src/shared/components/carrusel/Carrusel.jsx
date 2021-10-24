@@ -8,7 +8,7 @@ import cafe3 from '../../../assets/img/cafe3.jpeg';
 function carrusel() {
     return (
     <div className="container">
-        <h1 className="text-center">Bienvenidos a Amorma Cafe</h1>
+        <h1 className="text-center">Bienvenidos a Aroma a Cafe</h1>
         <br />
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-indicators">
