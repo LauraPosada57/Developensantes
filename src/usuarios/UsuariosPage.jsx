@@ -51,7 +51,7 @@ function UsuariosPage() {
 
     const editar = () => {
         console.log("sending to update", usuarioSeleccionado);
-        fetch(`${apiBaseUrl}/users/`+usuarioSeleccionado.id_user, {
+        fetch(`${apiBaseUrl}/api/users/`+usuarioSeleccionado.id_user, {
             method: 'PUT',
             body: JSON.stringify(usuarioSeleccionado),
             headers:{
