@@ -1,19 +1,19 @@
 {
   "web": {
-    "client_id": "495937009878-7v0r1jksaeaecbd0c9rbohn4dh22nmsj.apps.googleusercontent.com",
-    "project_id": "developensantes-329023",
+    "client_id": "732999377868-bcmt7ovq8cofhb2br3ruam1b34idreeb.apps.googleusercontent.com",
+    "project_id": "developensantes",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "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",
+    "client_secret": "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",
     "redirect_uris": [
-      "https://frontdevelopensantes.herokuapp.com/",
-      "https://backdevelopensantes.herokuapp.com/api/users/google",
-      "https://backdevelopensantes.herokuapp.com/api/users/google/login"
+      "http://localhost:3000/",
+      "http://localhost:5000/api/users/google",
+      "http://localhost:5000/api/users/google/login"
     ],
     "javascript_origins": [
-      "https://frontdevelopensantes.herokuapp.com",
-      "https://backdevelopensantes.herokuapp.com"
+      "http://localhost:3000",
+      "http://localhost:5000"
     ]
   }
 }
