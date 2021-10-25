@@ -58,7 +58,8 @@ const Formulario2= () => {
 
                     </div>
                     <div className="col-md-4">
-                        <select className="form-select" aria-label="Default select example"name="status" onChange={handleInputChange} defaultValue="1">
+                        <select className="form-select" aria-label="Default select example" name="status" onChange={handleInputChange} defaultValue="">
+                            <option value='' >Seleccione...</option>
                             <option value='1' >Disponible</option>
                             <option value='0'>No disponible</option>
                         </select>
