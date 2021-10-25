@@ -9,11 +9,15 @@
     "redirect_uris": [
       "http://localhost:3000/",
       "http://localhost:5000/api/users/google",
-      "http://localhost:5000/api/users/google/login"
+      "http://localhost:5000/api/users/google/login",
+      "https://frontdevelopensantes.herokuapp.com",
+      "https://backdevelopensantes.herokuapp.com/"
     ],
     "javascript_origins": [
       "http://localhost:3000",
-      "http://localhost:5000"
+      "http://localhost:5000",
+      "https://backdevelopensantes.herokuapp.com",
+      "https://frontdevelopensantes.herokuapp.com"
     ]
   }
 }
